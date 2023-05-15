@@ -6,10 +6,13 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       devise_for :admins, controllers: { sessions: 'api/v1/admins/sessions' }, defaults: { format: :json }
+      resources :products do
+        get :top_products, on: :collection
+        get :top_revenue_products, on: :collection
+      end
+      resources :purchases do
+        get :purchases_by_granularity, on: :collection
+      end
     end
   end
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-
-  # Defines the root path route ("/")
-  # root "articles#index"
 end
