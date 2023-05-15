@@ -1,0 +1,5 @@
+:schedule:
+  daily_report:
+    cron: '0 0 * * *'  # se ejecuta todos los días a medianoche
+    class: DailyReportWorker
+    queue: default
