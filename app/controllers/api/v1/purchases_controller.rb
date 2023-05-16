@@ -2,14 +2,21 @@ module Api
   module V1
     class PurchasesController < BaseController
       before_action :set_purchase, only: [:show, :update, :destroy]
+      after_commit :clear_cache
+
       def index
-        purchases = Purchase.filter_by_params(params)
+        cache_key = "purchases/#{params.to_query}"
+        purchases = Rails.cache.fetch(cache_key, expires_in: 1.hour) do
+          Purchase.filter_by_params(params)
+        end
         render json: purchases
       end
 
       def purchases_by_granularity
         granularity = params[:granularity] || 'day'
-        purchases_count = Purchase.count_by_granularity(params, granularity)
+        purchases_count = Rails.cache.fetch("purchases_by_granularity/#{granularity}", expires_in: 1.hour) do
+          Purchase.count_by_granularity(params, granularity)
+        end
 
         result = purchases_count.map do |purchase|
           {
