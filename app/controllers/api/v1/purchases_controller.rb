@@ -2,7 +2,6 @@ module Api
   module V1
     class PurchasesController < BaseController
       before_action :set_purchase, only: [:show, :update, :destroy]
-      after_commit :clear_cache
 
       def index
         cache_key = "purchases/#{params.to_query}"
