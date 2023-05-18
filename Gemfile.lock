@@ -125,10 +125,16 @@ GEM
     et-orbi (1.2.7)
       tzinfo
     execjs (2.8.1)
+    factory_bot (6.2.1)
+      activesupport (>= 5.0.0)
+    factory_bot_rails (6.2.0)
+      factory_bot (~> 6.2.0)
+      railties (>= 5.0.0)
+    faker (3.2.0)
+      i18n (>= 1.8.11, < 2)
     ffi (1.15.5)
     font-awesome-sass (6.4.0)
       sassc (~> 2.0)
-    foreman (0.87.2)
     fugit (1.8.1)
       et-orbi (~> 1, >= 1.2.7)
       raabro (~> 1.4)
@@ -297,8 +303,9 @@ DEPENDENCIES
   devise
   devise-jwt
   dotenv-rails
+  factory_bot_rails
+  faker
   font-awesome-sass (~> 6.1)
-  foreman
   jbuilder
   jsbundling-rails
   pg (~> 1.1)
