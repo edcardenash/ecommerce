@@ -17,10 +17,10 @@ module Api
           Purchase.count_by_granularity(params, granularity)
         end
 
-        result = purchases_count.map do |purchase|
+        result = purchases_count.map do |date, count|
           {
-            date: purchase.date.strftime('%Y-%m-%d %H:%M'),
-            count: purchase.count
+            date: date.strftime('%Y-%m-%d %H:%M'),
+            count: count
           }
         end
 
