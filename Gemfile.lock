@@ -322,10 +322,7 @@ DEPENDENCIES
   devise-jwt
   dotenv-rails
   factory_bot_rails
-<<<<<<< HEAD
-=======
   faker
->>>>>>> master
   font-awesome-sass (~> 6.1)
   jbuilder
   jsbundling-rails

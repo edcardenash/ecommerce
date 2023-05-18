@@ -4,7 +4,7 @@ module Api
       before_action :set_purchase, only: [:show, :update, :destroy]
 
       def index
-        cache_key = "purchases/#{params.to_query}"
+        cache_key = "purchases/#{params.permit!.to_query}"
         purchases = Rails.cache.fetch(cache_key, expires_in: 1.hour) do
           Purchase.filter_by_params(params)
         end
