@@ -10,8 +10,9 @@ class Category < ApplicationRecord
 
   def top_revenue_products(limit = 3)
     products.joins(:purchases)
+            .select('products.*, SUM(products.price * purchases.quantity) as revenue')
             .group('products.id')
-            .order('SUM(purchases.total_price) DESC')
+            .order('revenue DESC')
             .limit(limit)
   end
 end
