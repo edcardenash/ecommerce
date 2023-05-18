@@ -52,6 +52,8 @@ gem 'sidekiq'
 gem 'sidekiq-scheduler'
 gem "devise"
 gem 'devise-jwt'
+gem 'faker'
+gem 'factory_bot_rails'
 gem "autoprefixer-rails"
 gem "font-awesome-sass", "~> 6.1"
 gem "simple_form", github: "heartcombo/simple_form"
