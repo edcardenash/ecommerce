@@ -8,6 +8,15 @@ categories.each do |category_name|
   Category.create!(name: category_name)
 end
 
+# Create 5 admin users
+5.times do
+  Admin.create!(
+    email: Faker::Internet.email,
+    password: 'password',
+    password_confirmation: 'password'
+  )
+end
+
 # Create 15 products in each category
 Category.all.each do |category|
   15.times do
@@ -19,15 +28,6 @@ Category.all.each do |category|
     )
     ProductCategory.create!(product: product, category: category)
   end
-end
-
-# Create 5 admin users
-5.times do
-  Admin.create!(
-    email: Faker::Internet.email,
-    password: 'password',
-    password_confirmation: 'password'
-  )
 end
 
 # Create 20 client users
