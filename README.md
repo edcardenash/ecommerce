@@ -55,6 +55,11 @@ Follow these steps to get the server up and running:
     ```
 
     Save the generated secret key for JWT in your environment variables as `JWT_SECRET`.
+    
+ 6. **API testing**:
+
+
+    A Bash script (api_tests.sh) is provided in the root directory to automate these curl requests. Please ensure to update the placeholders for    admin's email and password before running the script.
 
 The application should now be running at `localhost:3000`.
 
