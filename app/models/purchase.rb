@@ -3,6 +3,7 @@ class Purchase < ApplicationRecord
   belongs_to :client
   belongs_to :admin
 
+  # Filters the purchases based on various parameters.
   def self.filter_by_params(params)
     query = self
     query = query.where("purchases.created_at >= ?", params[:start_date]) if params[:start_date].present?
@@ -13,8 +14,10 @@ class Purchase < ApplicationRecord
     query
   end
 
+  # Sends an email to the admin when the first purchase of a product happens.
   after_create :check_first_purchase
 
+  # Groups purchases by the time period specified by the granularity parameter and counts them. This can be used to get analytics data for displaying purchase trends.
   def self.count_by_granularity(params, granularity)
     group_by_clause = case granularity
                       when 'day'
@@ -35,6 +38,7 @@ class Purchase < ApplicationRecord
 
   private
 
+  # Checks if this is the first purchase of the product and if so, queues an email to be sent.
   def check_first_purchase
     if product.purchases.count == 1
       FirstPurchaseEmailWorker.perform_async(self.product_id)
